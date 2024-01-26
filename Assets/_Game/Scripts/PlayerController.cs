@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
     private Vector3 lookDir;
     [SerializeField] 
-    private GameObject bulletPrefab;
-
+    private PowerUp powerUp;
+    private float shootTimer;
+    private bool canShoot => shootTimer <= 0f;
     private Vector3 position;
 
     private void Awake()
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        ShootTimer();
         Shoot();
     }
 
@@ -62,12 +64,20 @@ public class PlayerController : MonoBehaviour
         dir.z = 0;
         lookDir = dir.normalized;
     }
+
+    private void ShootTimer()
+    {
+        if (canShoot)
+            return;
+        shootTimer -= Time.deltaTime;
+    }
     private void Shoot()
     {
-        if (!playerControls.Player.Shoot.triggered)
+        if (!canShoot || !playerControls.Player.Shoot.IsPressed())
             return;
-        var bullet = Instantiate(bulletPrefab);
+        var bullet = Instantiate(powerUp.bulletPrefab);
         bullet.GetComponent<BulletController>().Shoot(lookDir, position);
+        shootTimer = 1 / powerUp.fireRate;
         Debug.Log("PEW");
     }
 }

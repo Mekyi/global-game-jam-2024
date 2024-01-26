@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fef385d6-87bf-4032-a50f-2efa3a90f19d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.laughinc/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.laughinc/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/PlayerControls.inputactions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/PlayerControls.inputactions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Input/PlayerControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Input/PlayerControls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Input/PlayerControls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Input/PlayerControls.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Prefabs/Bullet.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Prefabs/Bullet.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Game/Scenes/LVL-1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scenes/LVL-1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Game/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scripts/PlayerController.cs" afterDir="false" />
     </list>
@@ -97,7 +99,7 @@
       <updated>1706298938020</updated>
       <workItem from="1706298941164" duration="4000" />
       <workItem from="1706299747498" duration="13000" />
-      <workItem from="1706300825824" duration="5562000" />
+      <workItem from="1706300825824" duration="7521000" />
     </task>
     <servers />
   </component>
