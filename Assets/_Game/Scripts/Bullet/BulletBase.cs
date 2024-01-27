@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletBase : MonoBehaviour
 {
-    [SerializeField] private float dmg;
+    [SerializeField] private int dmg;
     [SerializeField] private float speed;
     [SerializeField] private float range;
+    [SerializeField] private string targetTag;
     private Vector3 velocity;
     private Rigidbody2D rBody;
     private Vector3 startPos;
@@ -16,7 +14,7 @@ public class BulletController : MonoBehaviour
     {
         rBody = GetComponent<Rigidbody2D>();
     }
-    public void Shoot(Vector3 direction, Vector3 pos)
+    public virtual void Shoot(Vector3 direction, Vector3 pos)
     {
         velocity = speed * direction;
         transform.position = startPos = pos;
@@ -29,5 +27,18 @@ public class BulletController : MonoBehaviour
             return;
         }
         rBody.velocity = velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag(targetTag))
+            return;
+        var charBase = other.GetComponent<CharacterBase>();
+        if (charBase == null)
+        {
+            return;
+        }
+        charBase.DealDamage(dmg);
+        Destroy(gameObject);
     }
 }
