@@ -15,12 +15,21 @@ public class PlayerController : CharacterBase
     private float invincibleTime = 0.5f;
     private bool invincible => invincibilityTimer > 0f;
 
+    [SerializeField]
+    private float virtualMouseMaxDistance = 10f;
+
+    private GameObject virtualMouse;
+    
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
         InputSystem.onActionChange += InputActionChangeCallback;
+        
+        virtualMouse = new GameObject();
+        virtualMouse.name = "VirtualMouse";
     }
 
     private void Start()
@@ -75,11 +84,24 @@ public class PlayerController : CharacterBase
     private void Look()
     {
         Vector3 dir = new Vector3();
+        virtualMouse.transform.position = transform.position;
+
         if (isKeyboardAndMouse)
         {
             var mouseInput = cam.ScreenToWorldPoint(playerControls.Player.AimMouse.ReadValue<Vector2>());
             dir = mouseInput - position;
             dir.z = 0;
+
+            // WIP: Look ahead through virtual mouse
+            var distanceVector = new Vector3(
+                Mathf.Clamp(dir.x, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+                Mathf.Clamp(dir.y, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+                0f
+            );
+
+
+            //distanceVector = distanceVector.normalized;
+            //virtualMouse.transform.position = transform.position + distanceVector;
         }
         else
         {
@@ -116,4 +138,8 @@ public class PlayerController : CharacterBase
         base.DealDamage(amount);
     }
     
+    public GameObject GetVirtualMouse()
+    {
+        return virtualMouse;
+    }
 }
