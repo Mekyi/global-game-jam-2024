@@ -2,13 +2,14 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class CharacterBase : MonoBehaviour
 {
     [SerializeField] 
-    internal int MaxHealth;
+    internal float maxHealth;
     [SerializeField] 
-    internal int CurrentHealth;
+    internal float currentHealth;
     [SerializeField]
     internal float speed;
     public UnityAction<GameObject> OnDeath;
@@ -17,22 +18,29 @@ public class CharacterBase : MonoBehaviour
     internal float shootTimer;
     internal Vector3 position;
     internal bool canShoot => shootTimer <= 0f;
+    internal GrayscaleShaderScaler grayScaler;
 
-    private void Start()
+    internal virtual void Start()
     {
-        CurrentHealth = MaxHealth;
+        Heal(maxHealth);
+        grayScaler = GetComponent<GrayscaleShaderScaler>();
     }
 
-    public virtual void DealDamage(int amount)
+    public virtual void DealDamage(float amount)
     {
-        CurrentHealth -= amount;
-        if (CurrentHealth > 0)
+        currentHealth -= amount;
+        SetGrayScale();
+        if (currentHealth > 0)
             return;
-        Debug.Log(gameObject.name + " is dead");
         Death();
     }
 
-    private void Death()
+    protected virtual void SetGrayScale()
+    {
+        grayScaler?.SetColorScale(1 - currentHealth / maxHealth);
+    }
+
+    internal virtual void Death()
     {
         OnDeath?.Invoke(gameObject);
     }
@@ -41,8 +49,9 @@ public class CharacterBase : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
-        CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        SetGrayScale();
     }
 }
