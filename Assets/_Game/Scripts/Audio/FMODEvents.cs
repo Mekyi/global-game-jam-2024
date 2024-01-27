@@ -31,6 +31,9 @@ public class FMODEvents : MonoBehaviour
     public EventReference EnemyProgrammerShoot { get; private set; }
 
     [field: SerializeField]
+    public EventReference EnemyTurretPlacement{ get; private set; }
+
+    [field: SerializeField]
     public EventReference EnemyTurretShoot { get; private set; }
 
     [field: SerializeField]

@@ -131,13 +131,20 @@ MonoBehaviour:
       Data3: -2048972140
       Data4: 2022811735
     Path: event:/SFX/Enemy/EnemyProgrammerShoot
+  <EnemyTurretPlacement>k__BackingField:
+    Guid:
+      Data1: -798158230
+      Data2: 1113059739
+      Data3: 174026909
+      Data4: -1235546101
+    Path: event:/SFX/Enemy/EnemyTurretPlacement
   <EnemyTurretShoot>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -34012381
+      Data2: 1164639188
+      Data3: 1160764310
+      Data4: 1266987543
+    Path: event:/SFX/Enemy/EnemyTurretShoot
   <EnemyDamageTaken>k__BackingField:
     Guid:
       Data1: -2103926083
