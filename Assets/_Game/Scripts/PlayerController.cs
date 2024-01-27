@@ -10,6 +10,10 @@ public class PlayerController : CharacterBase
     private PlayerControls playerControls;
     private Vector2 moveInput;
     private bool isKeyboardAndMouse;
+    private float invincibilityTimer;
+    [SerializeField] 
+    private float invincibleTime = 0.5f;
+    private bool invincible => invincibilityTimer > 0f;
 
     private void Awake()
     {
@@ -48,6 +52,7 @@ public class PlayerController : CharacterBase
         position = transform.position;
         Look();
         ShootTimer();
+        InvincibilityTimer();
         Shoot();
     }
 
@@ -78,6 +83,12 @@ public class PlayerController : CharacterBase
             return;
         shootTimer -= Time.deltaTime;
     }
+    private void InvincibilityTimer()
+    {
+        if (!invincible)
+            return;
+        invincibilityTimer -= Time.deltaTime;
+    }
     private void Shoot()
     {
         if (!canShoot || !playerControls.Player.Shoot.IsPressed())
@@ -88,11 +99,10 @@ public class PlayerController : CharacterBase
     }
     public override void DealDamage(int amount)
     {
-        CurrentHealth -= amount;
-        if (CurrentHealth > 0)
+        if (invincible)
             return;
-        Debug.Log("Player is dead");
-        Destroy(gameObject);
+        invincibilityTimer = invincibleTime;
+        base.DealDamage(amount);
     }
     
 }

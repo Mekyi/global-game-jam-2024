@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fef385d6-87bf-4032-a50f-2efa3a90f19d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.laughinc/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.laughinc/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/Prefabs/Bullets/Enemy/ProgrammerBullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Prefabs/Bullets/Enemy/ProgrammerBullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/Scenes/LVL-1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scenes/LVL-1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/Scripts/CharacterBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scripts/CharacterBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Game/Scripts/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/Scripts/PowerUp.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +98,7 @@
       <workItem from="1706299747498" duration="13000" />
       <workItem from="1706300825824" duration="7521000" />
       <workItem from="1706345864165" duration="147000" />
-      <workItem from="1706346378423" duration="3091000" />
+      <workItem from="1706346378423" duration="4091000" />
     </task>
     <servers />
   </component>

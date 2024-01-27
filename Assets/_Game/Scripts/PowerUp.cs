@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public string name;
+    public new string name;
     public float fireRate;
     public GameObject bulletPrefab;
 }

@@ -33,11 +33,9 @@ public class BulletBase : MonoBehaviour
     {
         if (!other.CompareTag(targetTag))
             return;
-        Debug.Log("Hit " + other.name);
         var charBase = other.GetComponent<CharacterBase>();
         if (charBase == null)
         {
-            Debug.Log("No charbase :(");
             return;
         }
         charBase.DealDamage(dmg);
