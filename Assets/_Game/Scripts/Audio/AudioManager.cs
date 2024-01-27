@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeAmbience(FMODEvents.Instance.Ambience);
+        //InitializeAmbience(FMODEvents.Instance.Ambience);
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPosition)
@@ -51,11 +51,11 @@ public class AudioManager : MonoBehaviour
         return emitter;
     }
 
-    private void InitializeAmbience(EventReference ambienceEventReference)
-    {
-        _ambienceEventInstance = CreateInstance(ambienceEventReference);
-        _ambienceEventInstance.start();
-    }
+    //private void InitializeAmbience(EventReference ambienceEventReference)
+    //{
+    //    _ambienceEventInstance = CreateInstance(ambienceEventReference);
+    //    _ambienceEventInstance.start();
+    //}
 
     private void OnDestroy()
     {

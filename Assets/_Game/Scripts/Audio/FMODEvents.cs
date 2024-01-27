@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Ambience")]
-    [field: SerializeField]
-    public EventReference Ambience { get; private set; }
+    //[field: Header("Ambience")]
+    //[field: SerializeField]
+    //public EventReference Ambience { get; private set; }
 
 
     [field: Header("Player SFX")]
@@ -18,11 +18,11 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField]
     public EventReference PlayerDash { get; private set; }
 
-    [field: SerializeField]
-    public EventReference PlayerDamageTaken { get; private set; }
+    //[field: SerializeField]
+    //public EventReference PlayerDamageTaken { get; private set; }
 
-    [field: SerializeField]
-    public EventReference PlayerDeath { get; private set; }
+    //[field: SerializeField]
+    //public EventReference PlayerDeath { get; private set; }
 
     
     [field: Header("Enemy")]
@@ -42,14 +42,14 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField]
     public EventReference EnemyDeath { get; private set; }
 
-    [field: SerializeField]
-    public EventReference EnemyCatMeow { get; private set; }
+    //[field: SerializeField]
+    //public EventReference EnemyCatMeow { get; private set; }
 
-    [field: SerializeField]
-    public EventReference EnemyCatAttack { get; private set; }
+    //[field: SerializeField]
+    //public EventReference EnemyCatAttack { get; private set; }
 
-    [field: SerializeField]
-    public EventReference EnemyCatDeath { get; private set; }
+    //[field: SerializeField]
+    //public EventReference EnemyCatDeath { get; private set; }
 
     public static FMODEvents Instance { get; private set; }
 

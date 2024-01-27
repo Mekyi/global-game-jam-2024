@@ -31,9 +31,8 @@ public class PlayerController : CharacterBase
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
         InputSystem.onActionChange += InputActionChangeCallback;
-        
-        virtualMouse = new GameObject();
-        virtualMouse.name = "VirtualMouse";
+
+        CreateVirtualMouse();
     }
 
     internal override void Start()
@@ -56,6 +55,10 @@ public class PlayerController : CharacterBase
     private void OnLevelLoad()
     {
         currentHealth = maxHealth;
+        
+        cam = Camera.main;
+
+        //CreateVirtualMouse();
     }
 
     private void OnEnable()
@@ -100,7 +103,7 @@ public class PlayerController : CharacterBase
     private void Look()
     {
         Vector3 dir = new Vector3();
-        virtualMouse.transform.position = transform.position;
+        //virtualMouse.transform.position = transform.position;
 
         if (isKeyboardAndMouse)
         {
@@ -109,11 +112,11 @@ public class PlayerController : CharacterBase
             dir.z = 0;
 
             // WIP: Look ahead through virtual mouse
-            var distanceVector = new Vector3(
-                Mathf.Clamp(dir.x, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
-                Mathf.Clamp(dir.y, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
-                0f
-            );
+            //var distanceVector = new Vector3(
+            //    Mathf.Clamp(dir.x, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+            //    Mathf.Clamp(dir.y, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+            //    0f
+            //);
 
 
             //distanceVector = distanceVector.normalized;
@@ -160,6 +163,11 @@ public class PlayerController : CharacterBase
         grayScaler?.SetColorScale(currentHealth / maxHealth);
     }
     
+    private void CreateVirtualMouse()
+    {
+        virtualMouse = new GameObject();
+        virtualMouse.name = "VirtualMouse";
+    }
     public GameObject GetVirtualMouse()
     {
         return virtualMouse;
