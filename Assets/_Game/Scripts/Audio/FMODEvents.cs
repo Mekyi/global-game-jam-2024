@@ -13,7 +13,7 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Player SFX")]
     
     [field: SerializeField]
-    public EventReference PlayerShoot { get; private set; }
+    public EventReference PlayerGun { get; private set; }
 
     [field: SerializeField]
     public EventReference PlayerDamageTaken { get; private set; }
@@ -29,6 +29,9 @@ public class FMODEvents : MonoBehaviour
 
     [field: SerializeField]
     public EventReference EnemyTurretShoot { get; private set; }
+
+    [field: SerializeField]
+    public EventReference EnemyDamageTaken { get; private set; }
 
     [field: SerializeField]
     public EventReference EnemyDeath { get; private set; }
