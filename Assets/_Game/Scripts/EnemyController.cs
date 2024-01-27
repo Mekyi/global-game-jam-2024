@@ -51,5 +51,12 @@ public class EnemyBase : CharacterBase
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
         shootTimer = 1 / fireRate;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+    }
+
+    public override void DealDamage(float amount)
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDamageTaken, transform.position);
+        base.DealDamage(amount);
     }
 }
