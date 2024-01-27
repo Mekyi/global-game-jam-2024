@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CharacterBase : MonoBehaviour
     internal int CurrentHealth;
     [SerializeField]
     internal float speed;
+    public UnityAction<GameObject> OnDeath;
     internal Rigidbody2D rBody;
     internal Vector3 lookDir;
     internal float shootTimer;
@@ -27,6 +29,16 @@ public class CharacterBase : MonoBehaviour
         if (CurrentHealth > 0)
             return;
         Debug.Log(gameObject.name + " is dead");
+        Death();
+    }
+
+    private void Death()
+    {
+        OnDeath?.Invoke(gameObject);
+    }
+
+    public void Die()
+    {
         Destroy(gameObject);
     }
     public void Heal(int amount)
