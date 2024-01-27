@@ -72,8 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1272114836734747043}
   - component: {fileID: 6101590459439697780}
-  - component: {fileID: 4342849015433525355}
-  - component: {fileID: 3253094281811098985}
   m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
@@ -150,30 +148,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4342849015433525355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000856231085718515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e45ab706b0a5d45b161e6029bb555f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3253094281811098985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000856231085718515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e45ab706b0a5d45b161e6029bb555f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6825210451424414909
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 6825210451424414909}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -0.38, z: 0}
+  m_LocalPosition: {x: 13.367166, y: 8.918752, z: 0.16703548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -232,7 +206,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f163b0f703bfa584ba381cbd62e6d8f5, type: 2}
+  - {fileID: 2100000, guid: c757b96c85522404796ac25230bedc0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -296,6 +270,10 @@ MonoBehaviour:
   animator: {fileID: 5818764144493758842}
   shootingPoint: {fileID: 3328225227972596908}
   invincibleTime: 0.5
+  dodgeRollCooldown: 0.3
+  dodgeRollSpeedMultiplierBefore: 1.5
+  dodgeRollSpeedMultiplierAfter: 0.8
+  gun: {fileID: 6000856231085718515}
   virtualMouseMaxDistance: 10
 --- !u!50 &1552465035303685176
 Rigidbody2D:

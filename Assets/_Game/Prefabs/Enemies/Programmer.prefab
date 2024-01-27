@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f163b0f703bfa584ba381cbd62e6d8f5, type: 2}
+  - {fileID: 2100000, guid: c757b96c85522404796ac25230bedc0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,8 @@ MonoBehaviour:
   maxFireRate: 1.5
   animator: {fileID: 6044584804410614608}
   bulletPrefab: {fileID: 6098069844518603107, guid: 2bd7644ba31c3ca4f90e585262159a0a, type: 3}
-  shootingRange: 5
+  minShootingRange: 5
+  maxShootingRange: 10
 --- !u!50 &1123032212818875521
 Rigidbody2D:
   serializedVersion: 4
