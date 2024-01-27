@@ -59,4 +59,10 @@ public class EnemyBase : CharacterBase
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDamageTaken, transform.position);
         base.DealDamage(amount);
     }
+
+    internal override void Death()
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDeath, transform.position);
+        base.Death();
+    }
 }
