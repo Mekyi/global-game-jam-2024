@@ -22,16 +22,30 @@ public class PlayerController : MonoBehaviour
     private float shootTimer;
     private bool canShoot => shootTimer <= 0f;
     private Vector3 position;
+    private Gamepad gamePad;
+    private bool isKeyboardAndMouse;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
+        InputSystem.onActionChange += InputActionChangeCallback;
+    }
+    private void InputActionChangeCallback(object obj, InputActionChange change)
+    {
+        if (change == InputActionChange.ActionPerformed)
+        {
+            InputAction receivedInputAction = (InputAction) obj;
+            InputDevice lastDevice = receivedInputAction.activeControl.device;
+
+            isKeyboardAndMouse = lastDevice.name.Equals("Keyboard") || lastDevice.name.Equals("Mouse");
+        }
     }
 
     private void OnEnable()
     {
         playerControls.Player.Enable();
+        gamePad = Gamepad.current;
     }
 
     private void OnDisable()
@@ -59,9 +73,18 @@ public class PlayerController : MonoBehaviour
     private void Look()
     {
         position = transform.position;
-        mouseInput = cam.ScreenToWorldPoint(playerControls.Player.Look.ReadValue<Vector2>());
-        var dir = (Vector3)mouseInput - position;
-        dir.z = 0;
+        Vector3 dir = new Vector3();
+        if (isKeyboardAndMouse)
+        {
+            mouseInput = cam.ScreenToWorldPoint(playerControls.Player.AimMouse.ReadValue<Vector2>());
+            dir = (Vector3)mouseInput - position;
+            dir.z = 0;
+        }
+        else
+        {
+            dir = playerControls.Player.AimGamepad.ReadValue<Vector2>();
+            Debug.Log(playerControls.Player.AimGamepad.ReadValue<Vector2>());
+        }
         lookDir = dir.normalized;
     }
 
@@ -80,4 +103,5 @@ public class PlayerController : MonoBehaviour
         shootTimer = 1 / powerUp.fireRate;
         Debug.Log("PEW");
     }
+    
 }
