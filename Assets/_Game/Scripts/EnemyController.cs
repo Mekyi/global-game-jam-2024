@@ -25,8 +25,8 @@ public class EnemyBase : CharacterBase
     void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
-        randomStraifingDirection = Random.Range(0, 2);
-        shootingRange = Random.Range(minShootingRange, maxShootingRange);
+        randomStraifingDirection = UnityEngine.Random.Range(0, 2);
+        shootingRange = UnityEngine.Random.Range(minShootingRange, maxShootingRange);
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class EnemyBase : CharacterBase
             return;
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
-        shootTimer = 1 / Random.Range(minFireRate, maxFireRate);
+        shootTimer = 1 / UnityEngine.Random.Range(minFireRate, maxFireRate);
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
     }
 
