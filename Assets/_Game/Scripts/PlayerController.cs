@@ -17,9 +17,15 @@ public class PlayerController : CharacterBase
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
         InputSystem.onActionChange += InputActionChangeCallback;
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnLevelLoad += OnLevelLoad;
     }
     private void InputActionChangeCallback(object obj, InputActionChange change)
     {
@@ -30,6 +36,11 @@ public class PlayerController : CharacterBase
  
             isKeyboardAndMouse = lastDevice.name.Equals("Keyboard") || lastDevice.name.Equals("Mouse");
         }
+    }
+
+    private void OnLevelLoad()
+    {
+        
     }
 
     private void OnEnable()

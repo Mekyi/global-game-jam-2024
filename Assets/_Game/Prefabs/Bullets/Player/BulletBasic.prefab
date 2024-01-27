@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   speed: 10
-  range: 10
+  range: 30
   targetTag: Enemy
 --- !u!50 &182103220316751463
 Rigidbody2D:

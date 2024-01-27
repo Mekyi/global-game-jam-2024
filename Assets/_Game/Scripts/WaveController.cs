@@ -1,20 +1,35 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class WaveController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private List<Wave> waves;
+    public UnityAction OnLevelClear;
     private List<GameObject> enemies = new ();
     private float timeToWait = 3f;
     private float waitTimer;
     private bool wait => waitTimer > 0;
     private bool waveOver => enemies.Count == 0;
     private bool spawn;
+    private bool stop = false;
     void Start()
     {
+        OnLevelClear += GameManager.Instance.NextLevel;
+    }
+    void Update()
+    {
+        if (stop)
+            return;
+        if(wait)
+            Wait();
+        else if (spawn)
+            SpawnEnemies();
+        else if(waveOver)
+            NextWave();
     }
 
     private void NextWave()
@@ -38,16 +53,9 @@ public class WaveController : MonoBehaviour
     }
     private void LevelCleared()
     {
+        OnLevelClear?.Invoke();
+        stop = true;
         Debug.Log("Level Cleared!");
-    }
-    void Update()
-    {
-        if(wait)
-            Wait();
-        else if (spawn)
-            SpawnEnemies();
-        else if(waveOver)
-            NextWave();
     }
 
     private void SpawnEnemies()
