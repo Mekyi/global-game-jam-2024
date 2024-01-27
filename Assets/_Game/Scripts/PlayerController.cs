@@ -23,8 +23,9 @@ public class PlayerController : CharacterBase
         InputSystem.onActionChange += InputActionChangeCallback;
     }
 
-    private void Start()
+    internal override void Start()
     {
+        base.Start();
         GameManager.Instance.OnLevelLoad += OnLevelLoad;
     }
     private void InputActionChangeCallback(object obj, InputActionChange change)
@@ -40,7 +41,7 @@ public class PlayerController : CharacterBase
 
     private void OnLevelLoad()
     {
-        
+        currentHealth = maxHealth;
     }
 
     private void OnEnable()
@@ -108,12 +109,17 @@ public class PlayerController : CharacterBase
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
         shootTimer = 1 / powerUp.fireRate;
     }
-    public override void DealDamage(int amount)
+    public override void DealDamage(float amount)
     {
         if (invincible)
             return;
         invincibilityTimer = invincibleTime;
         base.DealDamage(amount);
+    }
+
+    protected override void SetGrayScale()
+    {
+        grayScaler?.SetColorScale(currentHealth / maxHealth);
     }
     
 }

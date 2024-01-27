@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 851957048991118467}
   - component: {fileID: 793231022569185488}
+  - component: {fileID: 9042795321099689918}
   - component: {fileID: 1176023064495380826}
   - component: {fileID: 1552465035303685176}
   - component: {fileID: 7726677238172195638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: f163b0f703bfa584ba381cbd62e6d8f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,6 +89,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9042795321099689918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825210451424414909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87992efaeaba6d488777e2e60ada919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1176023064495380826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,9 +113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9144351725cb89c4c8fb8eee51cb6b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 0
   speed: 5
   cam: {fileID: 1605262816935228639}
-  bullet: {fileID: 0}
+  powerUp: {fileID: 2441926993616165862, guid: b4045826e39f69b4c82d887fd823d746, type: 3}
+  invincibleTime: 0.5
 --- !u!50 &1552465035303685176
 Rigidbody2D:
   serializedVersion: 4
@@ -187,7 +203,7 @@ GameObject:
   - component: {fileID: 1605262816935228639}
   - component: {fileID: 1147729467836748399}
   - component: {fileID: 1301936969001570711}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -244,7 +260,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
