@@ -30,16 +30,22 @@ public class BulletBase : MonoBehaviour
         rBody.velocity = velocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void CheckHit(Collider2D other)
     {
         if (!other.CompareTag(targetTag))
             return;
         var charBase = other.GetComponent<CharacterBase>();
         if (charBase == null)
-        {
             return;
-        }
-        charBase.DealDamage(dmg);
-        Destroy(gameObject);
+        if(charBase.DealDamage(dmg))
+            Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        CheckHit(other);
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        CheckHit(other);
     }
 }

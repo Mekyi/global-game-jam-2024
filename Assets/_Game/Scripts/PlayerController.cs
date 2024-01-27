@@ -13,23 +13,30 @@ public class PlayerController : CharacterBase
     private Transform shootingPoint;
     private PlayerControls playerControls;
     private Vector2 moveInput;
-    private bool isKeyboardAndMouse;
+    private bool isKeyboardAndMouse => GameManager.Instance.isKeyboardAndMouse;
     private float invincibilityTimer;
     [SerializeField] 
     private float invincibleTime = 0.5f;
     private bool invincible => invincibilityTimer > 0f;
+    private bool dodgeRollInvincibility;
     private bool dodgeRolling = false;
     private float dodgeRollTimer;
     [SerializeField] 
     private float dodgeRollCooldown = 0.3f;
-    private bool canDodgeRoll  => dodgeRollTimer <= 0f && !dodgeRolling;
+    [SerializeField] 
+    private float dodgeRollSpeedMultiplierBefore = 1.5f;
+    [SerializeField] 
+    private float dodgeRollSpeedMultiplierAfter = 0.8f;
+    [SerializeField] 
+    private GameObject gun;
+    
+    private bool canDodgeRoll  => dodgeRollTimer <= 0f && !dodgeRolling && moveInput != Vector2.zero;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
-        InputSystem.onActionChange += InputActionChangeCallback;
     }
 
     internal override void Start()
@@ -37,16 +44,6 @@ public class PlayerController : CharacterBase
         base.Start();
         GameManager.Instance.OnLevelLoad += OnLevelLoad;
         grayScaler?.SetColorScale(1);
-    }
-    private void InputActionChangeCallback(object obj, InputActionChange change)
-    {
-        if (change == InputActionChange.ActionPerformed)
-        {
-            InputAction receivedInputAction = (InputAction) obj;
-            InputDevice lastDevice = receivedInputAction.activeControl.device;
- 
-            isKeyboardAndMouse = lastDevice.name.Equals("Keyboard") || lastDevice.name.Equals("Mouse");
-        }
     }
 
     private void OnLevelLoad()
@@ -83,15 +80,20 @@ public class PlayerController : CharacterBase
     private void Move()
     {
         moveInput = playerControls.Player.Move.ReadValue<Vector2>();
-        rBody.velocity = moveInput.normalized * speed;
-        animator.SetBool("IsMoving", moveInput != Vector2.zero);
+        if (!dodgeRolling && dodgeRollTimer <= 0)
+        {
+            rBody.velocity = moveInput.normalized * speed;
+            animator.SetBool("IsMoving", moveInput != Vector2.zero);
+        }
     }
     
     private void Roll()
     {
         if (!canDodgeRoll || !playerControls.Player.DodgeRoll.IsPressed())
             return;
-        Debug.Log("Start DodgeRoll");
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerDash, position);
+        dodgeRollInvincibility = true;
+        rBody.velocity = moveInput.normalized * (dodgeRollSpeedMultiplierBefore * speed);
         dodgeRolling = true;
         animator.SetTrigger("Roll");
     }
@@ -99,6 +101,8 @@ public class PlayerController : CharacterBase
     public void OnDodgeRollEnd()
     {
         dodgeRolling = false;
+        dodgeRollInvincibility = false;
+        rBody.velocity = moveInput.normalized * (dodgeRollSpeedMultiplierAfter * speed);
         dodgeRollTimer = dodgeRollCooldown;
         Debug.Log("Dodge roll ended");
     }
@@ -116,6 +120,13 @@ public class PlayerController : CharacterBase
             dir = playerControls.Player.AimGamepad.ReadValue<Vector2>();
         }
         lookDir = dir.normalized;
+        SetGunRotation();
+    }
+
+    private void SetGunRotation()
+    {
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg + 90;
+        gun.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void ShootTimer()
@@ -146,12 +157,12 @@ public class PlayerController : CharacterBase
         shootTimer = 1 / powerUp.fireRate;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerGun, transform.position);
     }
-    public override void DealDamage(float amount)
+    public override bool DealDamage(float amount)
     {
-        if (invincible)
-            return;
+        if (invincible || dodgeRollInvincibility)
+            return false;
         invincibilityTimer = invincibleTime;
-        base.DealDamage(amount);
+        return base.DealDamage(amount);
     }
 
     protected override void SetGrayScale()

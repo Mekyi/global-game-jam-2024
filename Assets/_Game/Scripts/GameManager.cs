@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
@@ -21,12 +22,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private List<SceneAsset> scenes;
     public Vector3 playerPosition => playerCtrlr.position;
+    public bool isKeyboardAndMouse;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
         Instance = this;
         playerCtrlr = Player.GetComponent<PlayerController>();
+        InputSystem.onActionChange += InputActionChangeCallback;
+    }
+    private void InputActionChangeCallback(object obj, InputActionChange change)
+    {
+        if (change == InputActionChange.ActionPerformed)
+        {
+            InputAction receivedInputAction = (InputAction) obj;
+            InputDevice lastDevice = receivedInputAction.activeControl.device;
+ 
+            isKeyboardAndMouse = lastDevice.name.Equals("Keyboard") || lastDevice.name.Equals("Mouse");
+        }
     }
 
     public GameObject GetEnemyGo(EnemyName enemyName)
