@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e61a701a-836e-4b87-96f1-6e000538a374}">
+		<property name="assetPath">
+			<value>keyboard.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>15.557375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{87aa5c19-88b2-48eb-b320-9ad311b1250b}</destination>
+		</relationship>
+	</object>
+</objects>

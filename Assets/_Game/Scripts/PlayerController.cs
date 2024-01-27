@@ -7,6 +7,10 @@ public class PlayerController : CharacterBase
     private Camera cam;
     [SerializeField] 
     private PowerUp powerUp;
+    [SerializeField] 
+    private Animator animator;
+    [SerializeField] 
+    private Transform shootingPoint;
     private PlayerControls playerControls;
     private Vector2 moveInput;
     private bool isKeyboardAndMouse;
@@ -32,9 +36,11 @@ public class PlayerController : CharacterBase
         virtualMouse.name = "VirtualMouse";
     }
 
-    private void Start()
+    internal override void Start()
     {
+        base.Start();
         GameManager.Instance.OnLevelLoad += OnLevelLoad;
+        grayScaler?.SetColorScale(1);
     }
     private void InputActionChangeCallback(object obj, InputActionChange change)
     {
@@ -49,7 +55,7 @@ public class PlayerController : CharacterBase
 
     private void OnLevelLoad()
     {
-        
+        currentHealth = maxHealth;
     }
 
     private void OnEnable()
@@ -71,6 +77,7 @@ public class PlayerController : CharacterBase
     {
         position = transform.position;
         Look();
+        Roll();
         ShootTimer();
         InvincibilityTimer();
         Shoot();
@@ -80,7 +87,16 @@ public class PlayerController : CharacterBase
     {
         moveInput = playerControls.Player.Move.ReadValue<Vector2>();
         rBody.velocity = moveInput.normalized * speed;
+        animator.SetBool("IsMoving", moveInput != Vector2.zero);
     }
+    
+    private void Roll()
+    {
+        // TODO...
+        if (Input.GetKeyDown("space"))
+            animator.SetTrigger("Roll");
+    }
+    
     private void Look()
     {
         Vector3 dir = new Vector3();
@@ -127,15 +143,21 @@ public class PlayerController : CharacterBase
         if (!canShoot || !playerControls.Player.Shoot.IsPressed())
             return;
         var bullet = Instantiate(powerUp.bulletPrefab);
-        bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
+        bullet.GetComponent<BulletBase>().Shoot(lookDir, shootingPoint.position);
         shootTimer = 1 / powerUp.fireRate;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerGun, transform.position);
     }
-    public override void DealDamage(int amount)
+    public override void DealDamage(float amount)
     {
         if (invincible)
             return;
         invincibilityTimer = invincibleTime;
         base.DealDamage(amount);
+    }
+
+    protected override void SetGrayScale()
+    {
+        grayScaler?.SetColorScale(currentHealth / maxHealth);
     }
     
     public GameObject GetVirtualMouse()

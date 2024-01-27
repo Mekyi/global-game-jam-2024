@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{39e34c1b-90cb-4264-a98d-47476c20f406}">
+		<property name="assetPath">
+			<value>keyboard_clip3.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.42258333333333331</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{87aa5c19-88b2-48eb-b320-9ad311b1250b}</destination>
+		</relationship>
+	</object>
+</objects>

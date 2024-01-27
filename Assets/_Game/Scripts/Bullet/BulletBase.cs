@@ -3,7 +3,8 @@ using UnityEngine;
 public class BulletBase : MonoBehaviour
 {
     [SerializeField] private int dmg;
-    [SerializeField] private float speed;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float range;
     [SerializeField] private string targetTag;
     private Vector3 velocity;
@@ -16,7 +17,7 @@ public class BulletBase : MonoBehaviour
     }
     public virtual void Shoot(Vector3 direction, Vector3 pos)
     {
-        velocity = speed * direction;
+        velocity = Random.Range(minSpeed, maxSpeed) * direction;
         transform.position = startPos = pos;
     }
     private void FixedUpdate()
