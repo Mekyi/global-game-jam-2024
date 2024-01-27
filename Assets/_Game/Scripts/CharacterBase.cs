@@ -40,7 +40,7 @@ public class CharacterBase : MonoBehaviour
         grayScaler?.SetColorScale(1 - currentHealth / maxHealth);
     }
 
-    private void Death()
+    internal virtual void Death()
     {
         OnDeath?.Invoke(gameObject);
     }

@@ -1,0 +1,5 @@
+# FMOD Studio files. The project should be located inside “FMOD” folder that is located in Unity project’s root  
+**.user
+**.unsaved
+**.cache
+**.restore

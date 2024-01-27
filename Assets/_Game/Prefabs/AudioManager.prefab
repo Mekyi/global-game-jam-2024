@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5486602897063931208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3205014769949075441}
+  - component: {fileID: 2330951631231580358}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3205014769949075441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486602897063931208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8577364067493464003}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2330951631231580358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5486602897063931208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07187ea0f532cdc4b9c371c3c30d8a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6869835336182752419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8577364067493464003}
+  - component: {fileID: 6624451070322478212}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8577364067493464003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869835336182752419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3205014769949075441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6624451070322478212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869835336182752419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27185c903ed5be543bd8831b9b91a784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Ambience>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <PlayerGun>k__BackingField:
+    Guid:
+      Data1: 658566435
+      Data2: 1095306729
+      Data3: 1990337211
+      Data4: -640781385
+    Path: event:/SFX/Player/PlayerGun
+  <PlayerDash>k__BackingField:
+    Guid:
+      Data1: 1893434530
+      Data2: 1149498519
+      Data3: 924984449
+      Data4: -1761511049
+    Path: event:/SFX/Player/PlayerDash
+  <PlayerDamageTaken>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <PlayerDeath>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <EnemyProgrammerShoot>k__BackingField:
+    Guid:
+      Data1: -371068027
+      Data2: 1277313674
+      Data3: -2048972140
+      Data4: 2022811735
+    Path: event:/SFX/Enemy/EnemyProgrammerShoot
+  <EnemyTurretPlacement>k__BackingField:
+    Guid:
+      Data1: -798158230
+      Data2: 1113059739
+      Data3: 174026909
+      Data4: -1235546101
+    Path: event:/SFX/Enemy/EnemyTurretPlacement
+  <EnemyTurretShoot>k__BackingField:
+    Guid:
+      Data1: -34012381
+      Data2: 1164639188
+      Data3: 1160764310
+      Data4: 1266987543
+    Path: event:/SFX/Enemy/EnemyTurretShoot
+  <EnemyDamageTaken>k__BackingField:
+    Guid:
+      Data1: -2103926083
+      Data2: 1145103843
+      Data3: -1853919605
+      Data4: 1112348116
+    Path: event:/SFX/Enemy/EnemyDamage
+  <EnemyDeath>k__BackingField:
+    Guid:
+      Data1: 881342299
+      Data2: 1233261018
+      Data3: 1423600033
+      Data4: -192494166
+    Path: event:/SFX/Enemy/EnemyDeath
+  <EnemyCatMeow>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <EnemyCatAttack>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <EnemyCatDeath>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

@@ -123,6 +123,7 @@ public class PlayerController : CharacterBase
         var bullet = Instantiate(powerUp.bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, shootingPoint.position);
         shootTimer = 1 / powerUp.fireRate;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerGun, transform.position);
     }
     public override void DealDamage(float amount)
     {

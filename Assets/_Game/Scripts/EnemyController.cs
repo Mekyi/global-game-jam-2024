@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -78,5 +79,18 @@ public class EnemyBase : CharacterBase
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
         shootTimer = 1 / Random.Range(minFireRate, maxFireRate);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+    }
+
+    public override void DealDamage(float amount)
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDamageTaken, transform.position);
+        base.DealDamage(amount);
+    }
+
+    internal override void Death()
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDeath, transform.position);
+        base.Death();
     }
 }
