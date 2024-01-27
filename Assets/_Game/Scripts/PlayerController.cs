@@ -14,6 +14,11 @@ public class PlayerController : CharacterBase
     [SerializeField] 
     private float invincibleTime = 0.5f;
     private bool invincible => invincibilityTimer > 0f;
+    private bool dodgeRolling = false;
+    private float dodgeRollTimer;
+    [SerializeField] 
+    private float dodgeRollCooldown = 0.3f;
+    private bool canDodgeRoll  => dodgeRollTimer <= 0f && !dodgeRolling;
 
     private void Awake()
     {
@@ -64,6 +69,7 @@ public class PlayerController : CharacterBase
         Look();
         ShootTimer();
         InvincibilityTimer();
+        DodgeRollTimer();
         Shoot();
     }
 
@@ -72,6 +78,26 @@ public class PlayerController : CharacterBase
         moveInput = playerControls.Player.Move.ReadValue<Vector2>();
         rBody.velocity = moveInput.normalized * speed;
     }
+<<<<<<< Updated upstream
+=======
+    
+    private void Roll()
+    {
+        if (!canDodgeRoll || !playerControls.Player.DodgeRoll.IsPressed())
+            return;
+        Debug.Log("Start DodgeRoll");
+        dodgeRolling = true;
+        animator.SetTrigger("Roll");
+    }
+
+    public void OnDodgeRollEnd()
+    {
+        dodgeRolling = false;
+        dodgeRollTimer = dodgeRollCooldown;
+        Debug.Log("Dodge roll ended");
+    }
+    
+>>>>>>> Stashed changes
     private void Look()
     {
         Vector3 dir = new Vector3();
@@ -99,6 +125,13 @@ public class PlayerController : CharacterBase
         if (!invincible)
             return;
         invincibilityTimer -= Time.deltaTime;
+    }
+
+    private void DodgeRollTimer()
+    {
+        if(canDodgeRoll)
+            return;
+        dodgeRollTimer -= Time.deltaTime;
     }
     private void Shoot()
     {
