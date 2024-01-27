@@ -40,12 +40,12 @@ public class CharacterBase : MonoBehaviour
         grayScaler?.SetColorScale(1 - currentHealth / maxHealth);
     }
 
-    private void Death()
+    protected void Death()
     {
         OnDeath?.Invoke(gameObject);
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }

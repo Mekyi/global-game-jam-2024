@@ -299,7 +299,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9149024230174930249, guid: a0d21a7d6bafc9c4a83314941cd6856f, type: 3}
+      propertyPath: waves.Array.data[0].EnemiesToSpawn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149024230174930249, guid: a0d21a7d6bafc9c4a83314941cd6856f, type: 3}
+      propertyPath: waves.Array.data[0].EnemiesToSpawn.Array.data[1].enemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149024230174930249, guid: a0d21a7d6bafc9c4a83314941cd6856f, type: 3}
       propertyPath: waves.Array.data[0].EnemiesToSpawn.Array.data[0].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149024230174930249, guid: a0d21a7d6bafc9c4a83314941cd6856f, type: 3}
+      propertyPath: waves.Array.data[0].EnemiesToSpawn.Array.data[1].amount
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9149024230174930249, guid: a0d21a7d6bafc9c4a83314941cd6856f, type: 3}
@@ -375,6 +387,18 @@ PrefabInstance:
       propertyPath: scenes.Array.data[1]
       value: 
       objectReference: {fileID: 102900000, guid: dc2d9a1a50d568c4999ca1da26944433, type: 3}
+    - target: {fileID: 3573567980131826287, guid: c0078ff3f760b8c46ab6b4c666c5277b, type: 3}
+      propertyPath: enemyGoAssociation.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573567980131826287, guid: c0078ff3f760b8c46ab6b4c666c5277b, type: 3}
+      propertyPath: enemyGoAssociation.Array.data[1].Name
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573567980131826287, guid: c0078ff3f760b8c46ab6b4c666c5277b, type: 3}
+      propertyPath: enemyGoAssociation.Array.data[1].Prefab
+      value: 
+      objectReference: {fileID: 1007046274112276841, guid: 1f7f2837eeb487641bef202a7a71bfca, type: 3}
     - target: {fileID: 8874895144592387133, guid: c0078ff3f760b8c46ab6b4c666c5277b, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -5,46 +5,48 @@ using UnityEngine;
 public class EnemyBase : CharacterBase
 {
     [SerializeField]
-    private float fireRate;
+    internal float fireRate;
     [SerializeField]
-    private GameObject bulletPrefab;
-    private Vector3 playerPos => GameManager.Instance.playerPosition;
+    internal GameObject bulletPrefab;
+    internal Vector3 playerPos => GameManager.Instance.playerPosition;
 
     // Start is called before the first frame update
-    void Awake()
+    protected virtual void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         position = transform.position;
         AimAtPlayer();
         ShootTimer();
         Shoot();
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
 
-    void Move()
+    protected virtual void Move()
     {
         rBody.velocity = lookDir * speed;
     }
 
-    void AimAtPlayer()
+    protected virtual void AimAtPlayer()
     {
         lookDir = (playerPos - position).normalized;
     }
+    
     private void ShootTimer()
     {
         if (canShoot)
             return;
         shootTimer -= Time.deltaTime;
     }
-    private void Shoot()
+    
+    protected virtual void Shoot()
     {
         if (!canShoot)
             return;

@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ProgrammerBullet : BulletBase
+public class TextBullet : BulletBase
 {
     [SerializeField]
-    private List<string> oneliners;
+    private List<string> Texts;
     [SerializeField]
     private TextMeshProUGUI tmp;
     public override void Shoot(Vector3 direction, Vector3 pos)
     {
-        tmp.text = GetRandomOneliner();
+        tmp.text = GetRandomTexts();
         base.Shoot(direction, pos);
         if (direction.x > 0)
             transform.right = direction;
         else
             transform.right = -direction;
     }    
-    public string GetRandomOneliner()
+    public string GetRandomTexts()
     {
-        int randomNum = Random.Range(0, oneliners.Count);
-        return oneliners[randomNum];
+        int randomNum = Random.Range(0, Texts.Count);
+        return Texts[randomNum];
     }
 }
