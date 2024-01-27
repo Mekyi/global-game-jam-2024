@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DodgeRoll"",
+                    ""type"": ""Button"",
+                    ""id"": ""557be6e6-195c-4229-ae9a-c0c3b0806332"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +183,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""AimMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49536da0-388a-45b4-87f1-db5f330cfe11"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DodgeRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7da09edc-e045-41db-b3b7-e0dfea0d1ef3"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DodgeRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -197,6 +228,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_AimGamepad = m_Player.FindAction("AimGamepad", throwIfNotFound: true);
         m_Player_AimMouse = m_Player.FindAction("AimMouse", throwIfNotFound: true);
+        m_Player_DodgeRoll = m_Player.FindAction("DodgeRoll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,6 +294,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_AimGamepad;
     private readonly InputAction m_Player_AimMouse;
+    private readonly InputAction m_Player_DodgeRoll;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -270,6 +303,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @AimGamepad => m_Wrapper.m_Player_AimGamepad;
         public InputAction @AimMouse => m_Wrapper.m_Player_AimMouse;
+        public InputAction @DodgeRoll => m_Wrapper.m_Player_DodgeRoll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +325,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AimMouse.started += instance.OnAimMouse;
             @AimMouse.performed += instance.OnAimMouse;
             @AimMouse.canceled += instance.OnAimMouse;
+            @DodgeRoll.started += instance.OnDodgeRoll;
+            @DodgeRoll.performed += instance.OnDodgeRoll;
+            @DodgeRoll.canceled += instance.OnDodgeRoll;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -307,6 +344,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AimMouse.started -= instance.OnAimMouse;
             @AimMouse.performed -= instance.OnAimMouse;
             @AimMouse.canceled -= instance.OnAimMouse;
+            @DodgeRoll.started -= instance.OnDodgeRoll;
+            @DodgeRoll.performed -= instance.OnDodgeRoll;
+            @DodgeRoll.canceled -= instance.OnDodgeRoll;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -348,5 +388,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnAimGamepad(InputAction.CallbackContext context);
         void OnAimMouse(InputAction.CallbackContext context);
+        void OnDodgeRoll(InputAction.CallbackContext context);
     }
 }

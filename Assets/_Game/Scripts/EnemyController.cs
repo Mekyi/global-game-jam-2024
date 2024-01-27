@@ -82,10 +82,10 @@ public class EnemyBase : CharacterBase
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
     }
 
-    public override void DealDamage(float amount)
+    public override bool DealDamage(float amount)
     {
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDamageTaken, transform.position);
-        base.DealDamage(amount);
+        return base.DealDamage(amount);
     }
 
     internal override void Death()
