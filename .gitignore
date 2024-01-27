@@ -105,3 +105,7 @@ fmod_editor.log
 /FMOD/**.unsaved
 /FMOD/**.cache
 /FMOD/**.restore
+/FMOD/fmod-project/.cache/buildrecords/Desktop/Master.br
+/FMOD/fmod-project/.cache/buildrecords/Desktop/SFX.br
+/FMOD/fmod-project/.cache/fsbcache/Desktop/F8D5D37E.fobj
+/FMOD/fmod-project/.cache/fsbcache/Desktop/E232096D.fobj

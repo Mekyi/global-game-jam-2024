@@ -49,7 +49,6 @@ public class WaveController : MonoBehaviour
     private void Wait()
     {
         waitTimer -= Time.deltaTime;
-        Debug.Log("Waiting " + waitTimer);
     }
     private void LevelCleared()
     {

@@ -3,7 +3,8 @@ using UnityEngine;
 public class BulletBase : MonoBehaviour
 {
     [SerializeField] private int dmg;
-    [SerializeField] private float speed;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float range;
     [SerializeField] private string targetTag;
     private Vector3 velocity;
@@ -16,7 +17,7 @@ public class BulletBase : MonoBehaviour
     }
     public virtual void Shoot(Vector3 direction, Vector3 pos)
     {
-        velocity = speed * direction;
+        velocity = Random.Range(minSpeed, maxSpeed) * direction;
         transform.position = startPos = pos;
     }
     private void FixedUpdate()
@@ -29,16 +30,22 @@ public class BulletBase : MonoBehaviour
         rBody.velocity = velocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void CheckHit(Collider2D other)
     {
         if (!other.CompareTag(targetTag))
             return;
         var charBase = other.GetComponent<CharacterBase>();
         if (charBase == null)
-        {
             return;
-        }
-        charBase.DealDamage(dmg);
-        Destroy(gameObject);
+        if(charBase.DealDamage(dmg))
+            Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        CheckHit(other);
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        CheckHit(other);
     }
 }

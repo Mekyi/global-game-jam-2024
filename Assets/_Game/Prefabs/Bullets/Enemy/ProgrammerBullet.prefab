@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 111
   m_TargetDisplay: 0
 --- !u!114 &5545469712072291703
 MonoBehaviour:
@@ -312,7 +312,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.47843137}
   m_FlipX: 0
@@ -337,12 +337,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
-  speed: 8
-  range: 100
+  minSpeed: 2
+  maxSpeed: 5
+  range: 20
   targetTag: Player
-  Texts:
-  - Console.Log("Hello world!");
-  - if(1/0 == 0) Die();
+  oneliners:
+  - Console.Log("Hello world");
+  - If(1/0 == 0) DIE();
+  - while(true) { oh nooo... }
+  - // Get commented out!
+  - L.A.U.G.H.WhoMakesClassesLikeThis();
+  - return "Fatal Error!";
   tmp: {fileID: 7080437563780502227}
 --- !u!50 &1542909488873234299
 Rigidbody2D:

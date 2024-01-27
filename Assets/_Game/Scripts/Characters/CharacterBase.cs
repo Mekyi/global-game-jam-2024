@@ -26,13 +26,14 @@ public class CharacterBase : MonoBehaviour
         grayScaler = GetComponent<GrayscaleShaderScaler>();
     }
 
-    public virtual void DealDamage(float amount)
+    public virtual bool DealDamage(float amount)
     {
         currentHealth -= amount;
         SetGrayScale();
         if (currentHealth > 0)
-            return;
+            return true;
         Death();
+        return true;
     }
 
     protected virtual void SetGrayScale()
@@ -40,7 +41,7 @@ public class CharacterBase : MonoBehaviour
         grayScaler?.SetColorScale(1 - currentHealth / maxHealth);
     }
 
-    protected void Death()
+    internal virtual void Death()
     {
         OnDeath?.Invoke(gameObject);
     }
