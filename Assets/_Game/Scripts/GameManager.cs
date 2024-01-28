@@ -31,10 +31,12 @@ public class GameManager : MonoBehaviour
     private bool isPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endGameScreen;
+    [SerializeField] private GameObject victoryScreen;
     [SerializeField] private GameObject dontDestroyOnLoad;
     [SerializeField] private GameObject eventSystemPrefab;
     private GameObject eventSystem;
     private bool gameOver;
+    private bool gameWon;
     
     
 
@@ -106,6 +108,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
         if(isPaused)
             playerCtrlr.DisableControls();
+        else
+            playerCtrlr.EnableControls();
     }
 
     private void ListenSkipLevel()
@@ -145,8 +149,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game over");
         Time.timeScale = 0;
-        Player.SetActive(false);
+        playerCtrlr.DisableControls();
         endGameScreen.SetActive(true);
+    }
+    public void GameVictory(GameObject go)
+    {
+        Debug.Log("Game victory!");
+        Time.timeScale = 0;
+        playerCtrlr.DisableControls();
+        victoryScreen.SetActive(true);
     }
 
     public void RestartLevel()
@@ -159,8 +170,10 @@ public class GameManager : MonoBehaviour
         mainCamera.gameObject.SetActive(true);
         virtualCamera.SetActive(true);
         OnLevelLoad?.Invoke();
+        Time.timeScale = 1;
         if(isPaused)
             SetPause();
+        CloseUIScreens();
     }
 
     public void RestartGame()
@@ -172,8 +185,17 @@ public class GameManager : MonoBehaviour
         mainCamera.gameObject.SetActive(true);
         virtualCamera.SetActive(true);
         OnLevelLoad?.Invoke();
+        Time.timeScale = 1;
         if(isPaused)
             SetPause();
+        CloseUIScreens();
+    }
+
+    private void CloseUIScreens()
+    {
+        pauseMenu.SetActive(false);
+        victoryScreen.SetActive(false);
+        endGameScreen.SetActive(false);
     }
     public void NextLevel()
     {
@@ -187,6 +209,7 @@ public class GameManager : MonoBehaviour
         endGameScreen.SetActive(false);
         if(isPaused)
             SetPause();
+        CloseUIScreens();
         OnLevelLoad?.Invoke();
     }
 }

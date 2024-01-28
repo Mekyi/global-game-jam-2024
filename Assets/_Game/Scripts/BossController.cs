@@ -256,6 +256,7 @@ public class BossController : CharacterBase
     internal override void Death()
     {
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatMeow, transform.position);
+        OnDeath += GameManager.Instance.GameVictory;
         base.Death();
     }
 }

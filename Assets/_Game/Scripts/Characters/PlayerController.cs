@@ -67,9 +67,8 @@ public class PlayerController : CharacterBase
     {
         Heal(maxHealth);
         cam = GameManager.Instance.mainCamera.GetComponent<Camera>();
-        if(!playerControls.Player.enabled)
-            EnableControls();
         SetHealthBar();
+        EnableControls();
         //CreateVirtualMouse();
     }
 
