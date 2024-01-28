@@ -68,5 +68,24 @@ public class CutSceneLevel : MonoBehaviour
         }
 
         TalkPanels[dialogIndex].SetActive(true);
+
+        switch (dialogIndex)
+        {
+            case 1:
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatMeow, transform.position);
+                break;
+            case 3:
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatLaugh, transform.position);
+                break;
+            case 5:
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatEvilMeow, transform.position);
+                break;
+            case 7:
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatEvilMeow, transform.position);
+                break;
+            case 8:
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatEvilMeow, transform.position);
+                break;
+        }
     }
 }

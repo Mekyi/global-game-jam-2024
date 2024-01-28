@@ -110,6 +110,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6098069844518603107, guid: 2bd7644ba31c3ca4f90e585262159a0a, type: 3}
   minShootingRange: 5
   maxShootingRange: 10
+  shootSound:
+    Guid:
+      Data1: -371068027
+      Data2: 1277313674
+      Data3: -2048972140
+      Data4: 2022811735
+    Path: event:/SFX/Enemy/EnemyProgrammerShoot
+  deathSound:
+    Guid:
+      Data1: 881342299
+      Data2: 1233261018
+      Data3: 1423600033
+      Data4: -192494166
+    Path: event:/SFX/Enemy/EnemyDeath
 --- !u!50 &1123032212818875521
 Rigidbody2D:
   serializedVersion: 4
