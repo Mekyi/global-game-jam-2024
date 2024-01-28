@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private int currentScene = 0;
     private WaveController waveController;
-    private PlayerController playerCtrlr;
+    public PlayerController playerCtrlr;
     public List<EnemyToGo> enemyGoAssociation;
     public Vector3 playerPosition => playerCtrlr.position;
     [HideInInspector]

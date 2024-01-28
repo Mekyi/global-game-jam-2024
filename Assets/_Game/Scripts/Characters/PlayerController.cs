@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : CharacterBase
 {
@@ -37,12 +38,17 @@ public class PlayerController : CharacterBase
     private float virtualMouseMaxDistance = 10f;
 
     private GameObject virtualMouse;
-    
+
+    [SerializeField]
+    private GameObject healthBar;
+
+    private Slider healthBarSlider;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
+        healthBarSlider = healthBar.GetComponent<Slider>();
 
         CreateVirtualMouse();
     }
@@ -53,12 +59,16 @@ public class PlayerController : CharacterBase
         GameManager.Instance.OnLevelLoad += OnLevelLoad;
         OnDeath += GameManager.Instance.GameOver;
         grayScaler?.SetColorScale(1);
+
+        SetHealthBar();
     }
 
     private void OnLevelLoad()
     {
         currentHealth = maxHealth;
         cam = GameManager.Instance.mainCamera.GetComponent<Camera>();
+
+        SetHealthBar();
 
         //CreateVirtualMouse();
     }
@@ -187,6 +197,7 @@ public class PlayerController : CharacterBase
         if (invincible || dodgeRollInvincibility)
             return false;
         invincibilityTimer = invincibleTime;
+        SetHealthBar();
         return base.DealDamage(amount);
     }
 
@@ -203,5 +214,11 @@ public class PlayerController : CharacterBase
     public GameObject GetVirtualMouse()
     {
         return virtualMouse;
+    }
+
+    private void SetHealthBar()
+    {
+        healthBarSlider.maxValue = maxHealth;
+        healthBarSlider.value = currentHealth;
     }
 }
