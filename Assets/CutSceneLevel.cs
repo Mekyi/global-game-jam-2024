@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,11 @@ public class CutSceneLevel : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.0f;
     private bool dialogStarted = false;
     private int dialogIndex = 0;
+
+    private void Awake()
+    {
+        GameManager.Instance.SetCutscene();
+    }
 
     void Start()
     {

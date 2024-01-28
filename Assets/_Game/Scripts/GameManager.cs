@@ -11,8 +11,7 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField] 
-    private GameObject Player;
+    public GameObject Player;
     public UnityAction OnLevelLoad;
     [SerializeField] 
     private int currentScene = 0;
@@ -22,14 +21,36 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private List<SceneAsset> scenes;
     public Vector3 playerPosition => playerCtrlr.position;
+    [HideInInspector]
     public bool isKeyboardAndMouse;
+    public GameObject mainCamera;
+    [SerializeField] 
+    private GameObject virtualCamera;
+    private bool skipping = false;
+    private PlayerControls playerControls;
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        }
         Application.targetFrameRate = 60;
-        Instance = this;
         playerCtrlr = Player.GetComponent<PlayerController>();
+        playerControls = new PlayerControls();
         InputSystem.onActionChange += InputActionChangeCallback;
+    }
+    private void OnEnable()
+    {
+        playerControls.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Player.Disable();
     }
     private void InputActionChangeCallback(object obj, InputActionChange change)
     {
@@ -42,20 +63,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (skipping)
+        {
+            if (playerControls.Player.SkipLevel.WasReleasedThisFrame())
+                skipping = false;
+            return;
+        }
+        if (!playerControls.Player.SkipLevel.IsPressed())
+            return;
+        skipping = true;
+        NextLevel();
+    }
+
+    public void SetCutscene()
+    {
+        mainCamera.SetActive(false);
+        virtualCamera.SetActive(false);
+        Player.SetActive(false);
+    }
     public GameObject GetEnemyGo(EnemyName enemyName)
     {
         return enemyGoAssociation.FirstOrDefault(enemy => enemy.Name == enemyName).Prefab;
     }
-
     public void NextLevel()
     {
         currentScene += 1;
         if (scenes.Count <= currentScene)
             return;
         SceneManager.LoadScene(scenes[currentScene].name);
+        Player.SetActive(true);
+        mainCamera.gameObject.SetActive(true);
+        virtualCamera.SetActive(true);
         OnLevelLoad?.Invoke();
     }
-    
 }
 public enum EnemyName
 {
