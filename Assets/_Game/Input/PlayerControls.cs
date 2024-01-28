@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""b720b140-ff33-49a5-a1d9-a756ef869173"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -205,6 +214,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DodgeRoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aec91bd7-1cd6-4ad5-b977-7521a6aa7f69"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""SkipLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c7d270d-3d50-4f68-b2a3-ae3b00721af7"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""SkipLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +260,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_AimGamepad = m_Player.FindAction("AimGamepad", throwIfNotFound: true);
         m_Player_AimMouse = m_Player.FindAction("AimMouse", throwIfNotFound: true);
         m_Player_DodgeRoll = m_Player.FindAction("DodgeRoll", throwIfNotFound: true);
+        m_Player_SkipLevel = m_Player.FindAction("SkipLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +327,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AimGamepad;
     private readonly InputAction m_Player_AimMouse;
     private readonly InputAction m_Player_DodgeRoll;
+    private readonly InputAction m_Player_SkipLevel;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -304,6 +337,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @AimGamepad => m_Wrapper.m_Player_AimGamepad;
         public InputAction @AimMouse => m_Wrapper.m_Player_AimMouse;
         public InputAction @DodgeRoll => m_Wrapper.m_Player_DodgeRoll;
+        public InputAction @SkipLevel => m_Wrapper.m_Player_SkipLevel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -328,6 +362,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DodgeRoll.started += instance.OnDodgeRoll;
             @DodgeRoll.performed += instance.OnDodgeRoll;
             @DodgeRoll.canceled += instance.OnDodgeRoll;
+            @SkipLevel.started += instance.OnSkipLevel;
+            @SkipLevel.performed += instance.OnSkipLevel;
+            @SkipLevel.canceled += instance.OnSkipLevel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -347,6 +384,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DodgeRoll.started -= instance.OnDodgeRoll;
             @DodgeRoll.performed -= instance.OnDodgeRoll;
             @DodgeRoll.canceled -= instance.OnDodgeRoll;
+            @SkipLevel.started -= instance.OnSkipLevel;
+            @SkipLevel.performed -= instance.OnSkipLevel;
+            @SkipLevel.canceled -= instance.OnSkipLevel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -389,5 +429,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAimGamepad(InputAction.CallbackContext context);
         void OnAimMouse(InputAction.CallbackContext context);
         void OnDodgeRoll(InputAction.CallbackContext context);
+        void OnSkipLevel(InputAction.CallbackContext context);
     }
 }

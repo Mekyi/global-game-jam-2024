@@ -41,7 +41,6 @@ public class PlayerController : CharacterBase
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
 
@@ -58,8 +57,7 @@ public class PlayerController : CharacterBase
     private void OnLevelLoad()
     {
         currentHealth = maxHealth;
-        
-        cam = Camera.main;
+        cam = GameManager.Instance.mainCamera.GetComponent<Camera>();
 
         //CreateVirtualMouse();
     }

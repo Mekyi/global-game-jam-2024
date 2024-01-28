@@ -34,7 +34,6 @@ public class WaveController : MonoBehaviour
 
     private void NextWave()
     {
-        Debug.Log("NextWave");
         if (waves.Count == 0)
         {
             LevelCleared();
@@ -54,7 +53,6 @@ public class WaveController : MonoBehaviour
     {
         OnLevelClear?.Invoke();
         stop = true;
-        Debug.Log("Level Cleared!");
     }
 
     private void SpawnEnemies()

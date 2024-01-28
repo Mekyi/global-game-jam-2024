@@ -13,10 +13,14 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Debug.LogError("Found more than one Audio Manager in the scene.");
-        }
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
 
         Instance = this;
 

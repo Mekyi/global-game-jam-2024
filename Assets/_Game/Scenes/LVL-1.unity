@@ -55139,6 +55139,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1287160359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3754359471802094415, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+  m_PrefabInstance: {fileID: 7554068203315242356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1289271714
 GameObject:
   m_ObjectHideFlags: 0
@@ -55894,6 +55899,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1522964194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4843826289446350217, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+  m_PrefabInstance: {fileID: 7554068203315242356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1529330764
 GameObject:
   m_ObjectHideFlags: 0
@@ -58792,6 +58802,26 @@ PrefabInstance:
       value: 8.918762
       objectReference: {fileID: 0}
     - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1287160359}
+    - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 1522964194}
+    - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: scenes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: scenes.Array.data[2]
+      value: 
+      objectReference: {fileID: 102900000, guid: 6463c543164c97644912e7b7cb92821d, type: 3}
+    - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: scenes.Array.data[3]
+      value: 
+      objectReference: {fileID: 102900000, guid: a4b8986a9ad4dec4ebb09d04cdc4952d, type: 3}
+    - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: enemyGoAssociation.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -58805,11 +58835,11 @@ PrefabInstance:
       objectReference: {fileID: 1007046274112276841, guid: 1f7f2837eeb487641bef202a7a71bfca, type: 3}
     - target: {fileID: 4546574411395286559, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.367166
+      value: 13.503841
       objectReference: {fileID: 0}
     - target: {fileID: 4546574411395286559, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.918752
+      value: 8.918762
       objectReference: {fileID: 0}
     - target: {fileID: 5318326361440092192, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: m_Name
