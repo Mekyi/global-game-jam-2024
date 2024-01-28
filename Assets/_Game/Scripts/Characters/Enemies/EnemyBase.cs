@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,12 @@ public class EnemyBase : CharacterBase
     private float maxShootingRange = 10f;
     private float shootingRange;
     private float randomStraifingDirection;
+
+    [SerializeField]
+    private EventReference shootSound;
+
+    [SerializeField]
+    private EventReference deathSound;
     
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -80,7 +87,11 @@ public class EnemyBase : CharacterBase
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
         shootTimer = 1 / GetFireRate();
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+
+        if (!shootSound.IsNull)
+        {
+            AudioManager.Instance.PlayOneShot(shootSound, transform.position);
+        }
     }
 
     protected float GetFireRate()
@@ -96,7 +107,10 @@ public class EnemyBase : CharacterBase
 
     internal override void Death()
     {
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDeath, transform.position);
+        if (!deathSound.IsNull)
+        {
+            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
+        }
         base.Death();
     }
 }

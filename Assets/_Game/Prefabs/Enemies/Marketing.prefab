@@ -183,6 +183,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1007046274112276841, guid: fcc0dc76b0d90884190bd9e449bfa921, type: 3}
   minShootingRange: 5
   maxShootingRange: 10
+  shootSound:
+    Guid:
+      Data1: -798158230
+      Data2: 1113059739
+      Data3: 174026909
+      Data4: -1235546101
+    Path: event:/SFX/Enemy/EnemyTurretPlacement
+  deathSound:
+    Guid:
+      Data1: 881342299
+      Data2: 1233261018
+      Data3: 1423600033
+      Data4: -192494166
+    Path: event:/SFX/Enemy/EnemyDeath
   maxTurrets: 2
   angleDeviation: 60
   raycastLayer:
