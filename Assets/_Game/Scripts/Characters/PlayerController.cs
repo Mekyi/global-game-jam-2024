@@ -179,7 +179,7 @@ public class PlayerController : CharacterBase
         if (!canShoot || !playerControls.Player.Shoot.IsPressed())
             return;
         var bullet = Instantiate(powerUp.bulletPrefab);
-        bullet.GetComponent<BulletBase>().Shoot(lookDir, shootingPoint.position);
+        bullet.GetComponent<BulletBase>().Shoot(lookDir == Vector3.zero ?( moveInput == Vector2.zero ? Vector3.right : moveInput) : lookDir, shootingPoint.position);
         shootTimer = 1 / powerUp.fireRate;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerGun, transform.position);
     }

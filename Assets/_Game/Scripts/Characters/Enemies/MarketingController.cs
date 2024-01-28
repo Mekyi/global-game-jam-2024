@@ -14,7 +14,6 @@ public class MarketingController : EnemyBase
 
     private float angleMin;
     private float angleMax;
-    private Vector3 nextWaypoint;
     private List<GameObject> turrets = new ();
     private float distToWaypoint;
     private float timeToWaypoint;
@@ -80,10 +79,10 @@ public class MarketingController : EnemyBase
         lookDir = (Vector3.zero - position).normalized;
         lookDir = Quaternion.AngleAxis(angle, Vector3.forward) * lookDir;
         var hit = Physics2D.Raycast(position, lookDir, 100,raycastLayer.value);
+        Debug.Log("pos " + position + ", hitPos: " + hit.point);
         var dist = Vector3.Distance(position, hit.point);
         var distToGo = Random.Range(dist / 2, dist);
         timeToWaypoint =  distToGo / speed;
-        nextWaypoint = position + distToGo * lookDir;
     }
 
     protected override void AimAtPlayer()
