@@ -32,11 +32,20 @@ public class PlayerController : CharacterBase
     
     private bool canDodgeRoll  => dodgeRollTimer <= 0f && !dodgeRolling && moveInput != Vector2.zero;
 
+
+    [SerializeField]
+    private float virtualMouseMaxDistance = 10f;
+
+    private GameObject virtualMouse;
+    
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         playerControls = new PlayerControls();
         rBody = GetComponent<Rigidbody2D>();
+
+        CreateVirtualMouse();
     }
 
     internal override void Start()
@@ -49,6 +58,10 @@ public class PlayerController : CharacterBase
     private void OnLevelLoad()
     {
         currentHealth = maxHealth;
+        
+        cam = Camera.main;
+
+        //CreateVirtualMouse();
     }
 
     private void OnEnable()
@@ -109,11 +122,24 @@ public class PlayerController : CharacterBase
     private void Look()
     {
         Vector3 dir = new Vector3();
+        //virtualMouse.transform.position = transform.position;
+
         if (isKeyboardAndMouse)
         {
             var mouseInput = cam.ScreenToWorldPoint(playerControls.Player.AimMouse.ReadValue<Vector2>());
             dir = mouseInput - position;
             dir.z = 0;
+
+            // WIP: Look ahead through virtual mouse
+            //var distanceVector = new Vector3(
+            //    Mathf.Clamp(dir.x, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+            //    Mathf.Clamp(dir.y, -virtualMouseMaxDistance, virtualMouseMaxDistance), 
+            //    0f
+            //);
+
+
+            //distanceVector = distanceVector.normalized;
+            //virtualMouse.transform.position = transform.position + distanceVector;
         }
         else
         {
@@ -170,4 +196,13 @@ public class PlayerController : CharacterBase
         grayScaler?.SetColorScale(currentHealth / maxHealth);
     }
     
+    private void CreateVirtualMouse()
+    {
+        virtualMouse = new GameObject();
+        virtualMouse.name = "VirtualMouse";
+    }
+    public GameObject GetVirtualMouse()
+    {
+        return virtualMouse;
+    }
 }
