@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2fd727fa-a3be-45d0-aa58-b9addf9ee597}">
+		<property name="assetPath">
+			<value>angry_cat.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.2326458333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{87aa5c19-88b2-48eb-b320-9ad311b1250b}</destination>
+		</relationship>
+	</object>
+</objects>

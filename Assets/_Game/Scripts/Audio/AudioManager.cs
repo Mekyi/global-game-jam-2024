@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     private List<EventInstance> _eventInstances;
     private List<StudioEventEmitter> _studioEventEmitters;
-    private EventInstance _ambienceEventInstance;
+    private EventInstance _bgmEventInstance;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //InitializeAmbience(FMODEvents.Instance.Ambience);
+        InitializaBGM(FMODEvents.Instance.BGM);
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPosition)
@@ -55,11 +55,11 @@ public class AudioManager : MonoBehaviour
         return emitter;
     }
 
-    //private void InitializeAmbience(EventReference ambienceEventReference)
-    //{
-    //    _ambienceEventInstance = CreateInstance(ambienceEventReference);
-    //    _ambienceEventInstance.start();
-    //}
+    private void InitializaBGM(EventReference bgmEventReference)
+    {
+        _bgmEventInstance = CreateInstance(bgmEventReference);
+        _bgmEventInstance.start();
+    }
 
     private void OnDestroy()
     {

@@ -4748,15 +4748,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1296417579468310738, guid: ed580d980854a5e48afbffaad4fa9fad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.462695
+      value: 25.429867
       objectReference: {fileID: 0}
     - target: {fileID: 1296417579468310738, guid: ed580d980854a5e48afbffaad4fa9fad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.918912
+      value: 18.21767
       objectReference: {fileID: 0}
     - target: {fileID: 1296417579468310738, guid: ed580d980854a5e48afbffaad4fa9fad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.832965
+      value: -9.66593
       objectReference: {fileID: 0}
     - target: {fileID: 1296417579468310738, guid: ed580d980854a5e48afbffaad4fa9fad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4942,12 +4942,40 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <BGM>k__BackingField.Path
+      value: event:/Music/BGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <BGM>k__BackingField.Guid.Data1
+      value: 916871039
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <BGM>k__BackingField.Guid.Data2
+      value: 1252057548
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <BGM>k__BackingField.Guid.Data3
+      value: 1696290722
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <BGM>k__BackingField.Guid.Data4
+      value: -1823112157
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatMeow>k__BackingField.Path
       value: event:/SFX/Enemy/EnemyCatMeow
       objectReference: {fileID: 0}
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAngry>k__BackingField.Path
+      value: event:/SFX/Enemy/EnemyCatAngry
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatLaugh>k__BackingField.Path
       value: event:/SFX/Enemy/EnemyCatLaugh
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAttack>k__BackingField.Path
+      value: event:/SFX/Enemy/EnemyCatAngry
       objectReference: {fileID: 0}
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatEvilMeow>k__BackingField.Path
@@ -4970,6 +4998,22 @@ PrefabInstance:
       value: -344243313
       objectReference: {fileID: 0}
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAngry>k__BackingField.Guid.Data1
+      value: 311765080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAngry>k__BackingField.Guid.Data2
+      value: 1242196185
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAngry>k__BackingField.Guid.Data3
+      value: 1072240296
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAngry>k__BackingField.Guid.Data4
+      value: 716546373
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatLaugh>k__BackingField.Guid.Data1
       value: -93920352
       objectReference: {fileID: 0}
@@ -4984,6 +5028,22 @@ PrefabInstance:
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatLaugh>k__BackingField.Guid.Data4
       value: -1766794985
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAttack>k__BackingField.Guid.Data1
+      value: 311765080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAttack>k__BackingField.Guid.Data2
+      value: 1242196185
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAttack>k__BackingField.Guid.Data3
+      value: 1072240296
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
+      propertyPath: <EnemyCatAttack>k__BackingField.Guid.Data4
+      value: 716546373
       objectReference: {fileID: 0}
     - target: {fileID: 6624451070322478212, guid: d1f32621838cd354cb75e5f82b6b1337, type: 3}
       propertyPath: <EnemyCatEvilMeow>k__BackingField.Guid.Data1
@@ -5029,11 +5089,11 @@ PrefabInstance:
       objectReference: {fileID: 1019037782055741202}
     - target: {fileID: 5745880838883118202, guid: c40c72afe4e18cd44b7ac8185201bdef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.462695
+      value: 13.367166
       objectReference: {fileID: 0}
     - target: {fileID: 5745880838883118202, guid: c40c72afe4e18cd44b7ac8185201bdef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.918912
+      value: 8.918752
       objectReference: {fileID: 0}
     - target: {fileID: 5745880838883118202, guid: c40c72afe4e18cd44b7ac8185201bdef, type: 3}
       propertyPath: m_LocalPosition.z

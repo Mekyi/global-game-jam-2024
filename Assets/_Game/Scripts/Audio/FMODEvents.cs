@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class FMODEvents : MonoBehaviour
 {
-    //[field: Header("Ambience")]
-    //[field: SerializeField]
-    //public EventReference Ambience { get; private set; }
+    [field: Header("BGM")]
+    [field: SerializeField]
+    public EventReference BGM{ get; private set; }
 
 
     [field: Header("Player SFX")]
@@ -53,6 +53,9 @@ public class FMODEvents : MonoBehaviour
 
     [field: SerializeField]
     public EventReference EnemyCatLaugh { get; private set; }
+
+    [field: SerializeField]
+    public EventReference EnemyCatAngry{ get; private set; }
 
     public static FMODEvents Instance { get; private set; }
 

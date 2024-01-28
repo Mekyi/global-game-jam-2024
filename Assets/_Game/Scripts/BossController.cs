@@ -92,6 +92,8 @@ public class BossController : CharacterBase
 
     private void ChooseNextPosition()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatEvilMeow, transform.position);
+
         nextPosition = new Vector3(
             Random.Range(topLeftCorner.x, bottomRightCorner.x),
             Random.Range(bottomRightCorner.y, topLeftCorner.y),
@@ -106,6 +108,7 @@ public class BossController : CharacterBase
     {
         Vector2 direction = (nextPosition - position).normalized;
         float distanceToTarget = Vector2.Distance(position, nextPosition);
+
 
         if (distanceToTarget < 1f)
         {
@@ -168,12 +171,14 @@ public class BossController : CharacterBase
         float angleStep = 360f / spiralBulletsPerShot;
         float angle = 0f;
 
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatAngry, transform.position);
+
         for (int i = 0; i < spiralBulletsPerShot; i++)
         {
             var bullet = Instantiate(bulletPrefab);
             Vector2 shootDirection = Quaternion.Euler(0, 0, angle) * Vector2.up;
             bullet.GetComponent<BulletBase>().Shoot(shootDirection, position);
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+            //AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
             angle += angleStep;
 
             yield return new WaitForSeconds(spiralRate);
@@ -183,6 +188,8 @@ public class BossController : CharacterBase
 
     IEnumerator ConeShoot()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatAngry, transform.position);
+
         for (int i = 0; i < coneBulletsPerShot; i++)
         {
             Vector2 lookDir = (playerPos - position).normalized;
@@ -191,7 +198,7 @@ public class BossController : CharacterBase
             float angle = startAngle + Random.Range(0f, coneAngle);
             Vector2 shootDirection = Quaternion.Euler(0, 0, angle) * Vector2.right;
             bullet.GetComponent<BulletBase>().Shoot(shootDirection, position);
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+            //AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
 
             yield return new WaitForSeconds(coneRate);
         }
@@ -200,11 +207,13 @@ public class BossController : CharacterBase
 
     IEnumerator MachineGunShoot()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatAngry, transform.position);
+
         for (int i = 0; i < machineGunBulletsPerShot; i++)
         {
             var bullet = Instantiate(bulletPrefab);
             bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+            //AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
 
             yield return new WaitForSeconds(machineGunRate);
         }
@@ -246,7 +255,7 @@ public class BossController : CharacterBase
 
     internal override void Death()
     {
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyDeath, transform.position);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyCatMeow, transform.position);
         base.Death();
     }
 }
