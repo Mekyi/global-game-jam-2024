@@ -57,20 +57,31 @@ public class PlayerController : CharacterBase
 
     private void OnLevelLoad()
     {
-        currentHealth = maxHealth;
+        Heal(maxHealth);
         cam = GameManager.Instance.mainCamera.GetComponent<Camera>();
-
+        if(!playerControls.Player.enabled)
+            EnableControls();
         //CreateVirtualMouse();
     }
 
-    private void OnEnable()
+    public void DisableControls()
+    {
+        playerControls.Player.Disable();
+    }
+    public void EnableControls()
     {
         playerControls.Player.Enable();
+    }
+    
+
+    private void OnEnable()
+    {
+        EnableControls();
     }
 
     private void OnDisable()
     {
-        playerControls.Player.Disable();
+        DisableControls();
     }
 
     private void FixedUpdate()

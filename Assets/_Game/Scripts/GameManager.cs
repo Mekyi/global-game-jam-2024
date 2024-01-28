@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -25,29 +27,49 @@ public class GameManager : MonoBehaviour
     private GameObject virtualCamera;
     private bool skipping = false;
     private PlayerControls playerControls;
+    private bool pauseReleased = true;
+    private bool isPaused;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject endGameScreen;
+    [SerializeField] private GameObject dontDestroyOnLoad;
+    [SerializeField] private GameObject eventSystemPrefab;
+    private GameObject eventSystem;
+    private bool gameOver;
+    
+    
 
     private void Awake()
     {
         if (Instance != null && Instance != this) 
         { 
+            Destroy(dontDestroyOnLoad);
             Destroy(this); 
         } 
         else 
         { 
             Instance = this; 
         }
+
         Application.targetFrameRate = 60;
         playerCtrlr = Player.GetComponent<PlayerController>();
         playerControls = new PlayerControls();
         InputSystem.onActionChange += InputActionChangeCallback;
     }
+
+    private void Start()
+    {
+        if (eventSystem == null)
+            eventSystem = Instantiate(eventSystemPrefab, dontDestroyOnLoad.transform);
+    }
     private void OnEnable()
     {
-        playerControls.Player.Enable();
+        if(playerControls != null)
+            playerControls.Player.Enable();
     }
     private void OnDisable()
     {
-        playerControls.Player.Disable();
+        if(playerControls != null)
+            playerControls.Player.Disable();
     }
     private void InputActionChangeCallback(object obj, InputActionChange change)
     {
@@ -61,6 +83,32 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
+    {
+        ListenPause();
+        ListenSkipLevel();
+    }
+
+    private void ListenPause()
+    {
+        if (!gameOver && pauseReleased && playerControls.Player.Pause.IsPressed())
+        {
+            pauseReleased = false;
+            SetPause();
+        }
+        if (playerControls.Player.Pause.WasReleasedThisFrame())
+            pauseReleased = true;
+    }
+
+    private void SetPause()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
+        if(isPaused)
+            playerCtrlr.DisableControls();
+    }
+
+    private void ListenSkipLevel()
     {
         if (skipping)
         {
@@ -98,6 +146,34 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game over");
         Time.timeScale = 0;
         Player.SetActive(false);
+        endGameScreen.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        int thisLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (String.IsNullOrWhiteSpace(SceneUtility.GetScenePathByBuildIndex(thisLevelBuildIndex)))
+            return;
+        SceneManager.LoadScene(thisLevelBuildIndex);
+        Player.SetActive(true);
+        mainCamera.gameObject.SetActive(true);
+        virtualCamera.SetActive(true);
+        OnLevelLoad?.Invoke();
+        if(isPaused)
+            SetPause();
+    }
+
+    public void RestartGame()
+    {
+        if (String.IsNullOrWhiteSpace(SceneUtility.GetScenePathByBuildIndex(0)))
+            return;
+        SceneManager.LoadScene(0);
+        Player.SetActive(true);
+        mainCamera.gameObject.SetActive(true);
+        virtualCamera.SetActive(true);
+        OnLevelLoad?.Invoke();
+        if(isPaused)
+            SetPause();
     }
     public void NextLevel()
     {
@@ -108,6 +184,9 @@ public class GameManager : MonoBehaviour
         Player.SetActive(true);
         mainCamera.gameObject.SetActive(true);
         virtualCamera.SetActive(true);
+        endGameScreen.SetActive(false);
+        if(isPaused)
+            SetPause();
         OnLevelLoad?.Invoke();
     }
 }

@@ -73,9 +73,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f9bb14d-47cd-482a-b43c-3752c7015f00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SkipLevel"",
                     ""type"": ""Button"",
-                    ""id"": ""b720b140-ff33-49a5-a1d9-a756ef869173"",
+                    ""id"": ""7972b9af-f49c-4cb4-b379-49d956d14cc0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -217,7 +226,29 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""aec91bd7-1cd6-4ad5-b977-7521a6aa7f69"",
+                    ""id"": ""0892e272-1c20-4a5e-83b6-cb3beaa74501"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d8119d6-dc4c-4d9b-82d4-98d57d567adc"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba887b6f-dbdb-4a8b-9b99-c933e372d380"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -228,7 +259,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9c7d270d-3d50-4f68-b2a3-ae3b00721af7"",
+                    ""id"": ""de5401af-21ac-4625-889e-517f70fde564"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -260,6 +291,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_AimGamepad = m_Player.FindAction("AimGamepad", throwIfNotFound: true);
         m_Player_AimMouse = m_Player.FindAction("AimMouse", throwIfNotFound: true);
         m_Player_DodgeRoll = m_Player.FindAction("DodgeRoll", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_SkipLevel = m_Player.FindAction("SkipLevel", throwIfNotFound: true);
     }
 
@@ -327,6 +359,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AimGamepad;
     private readonly InputAction m_Player_AimMouse;
     private readonly InputAction m_Player_DodgeRoll;
+    private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_SkipLevel;
     public struct PlayerActions
     {
@@ -337,6 +370,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @AimGamepad => m_Wrapper.m_Player_AimGamepad;
         public InputAction @AimMouse => m_Wrapper.m_Player_AimMouse;
         public InputAction @DodgeRoll => m_Wrapper.m_Player_DodgeRoll;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @SkipLevel => m_Wrapper.m_Player_SkipLevel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -362,6 +396,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DodgeRoll.started += instance.OnDodgeRoll;
             @DodgeRoll.performed += instance.OnDodgeRoll;
             @DodgeRoll.canceled += instance.OnDodgeRoll;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @SkipLevel.started += instance.OnSkipLevel;
             @SkipLevel.performed += instance.OnSkipLevel;
             @SkipLevel.canceled += instance.OnSkipLevel;
@@ -384,6 +421,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DodgeRoll.started -= instance.OnDodgeRoll;
             @DodgeRoll.performed -= instance.OnDodgeRoll;
             @DodgeRoll.canceled -= instance.OnDodgeRoll;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @SkipLevel.started -= instance.OnSkipLevel;
             @SkipLevel.performed -= instance.OnSkipLevel;
             @SkipLevel.canceled -= instance.OnSkipLevel;
@@ -429,6 +469,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAimGamepad(InputAction.CallbackContext context);
         void OnAimMouse(InputAction.CallbackContext context);
         void OnDodgeRoll(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         void OnSkipLevel(InputAction.CallbackContext context);
     }
 }
