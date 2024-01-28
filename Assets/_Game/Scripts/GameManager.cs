@@ -92,6 +92,13 @@ public class GameManager : MonoBehaviour
     {
         return enemyGoAssociation.FirstOrDefault(enemy => enemy.Name == enemyName).Prefab;
     }
+
+    public void GameOver(GameObject go)
+    {
+        Debug.Log("Game over");
+        Time.timeScale = 0;
+        Player.SetActive(false);
+    }
     public void NextLevel()
     {
         int nextLevelBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;

@@ -32,15 +32,11 @@ public class BulletBase : MonoBehaviour
 
     private void CheckHit(Collider2D other)
     {
-        Debug.Log("hit " + other.name + ", tag: " + other.tag);
         if (!other.CompareTag(targetTag))
             return;
-        
-        Debug.Log("Target is right");
         var charBase = other.GetComponent<CharacterBase>();
         if (charBase == null)
             return;
-        Debug.Log("Got characterbase");
         if(charBase.DealDamage(dmg))
             Destroy(gameObject);
     }
