@@ -12,7 +12,7 @@ public class EnemyBase : CharacterBase
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private GameObject bulletPrefab;
+    internal GameObject bulletPrefab;
     private Vector3 playerPos => GameManager.Instance.playerPosition;
     [SerializeField]
     private float minShootingRange = 5f;
@@ -79,8 +79,13 @@ public class EnemyBase : CharacterBase
             return;
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
-        shootTimer = 1 / UnityEngine.Random.Range(minFireRate, maxFireRate);
+        shootTimer = 1 / GetFireRate();
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+    }
+
+    protected float GetFireRate()
+    {
+        return UnityEngine.Random.Range(minFireRate, maxFireRate);
     }
 
     public override bool DealDamage(float amount)

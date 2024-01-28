@@ -9,12 +9,16 @@ public class MarketingController : EnemyBase
     private int maxTurrets;
     [SerializeField] 
     private float angleDeviation;
+    [SerializeField] 
+    private LayerMask raycastLayer;
 
     private float angleMin;
     private float angleMax;
     private Vector3 nextWaypoint;
     private List<GameObject> turrets = new ();
     private float distToWaypoint;
+    private float timeToWaypoint;
+    
 
     protected override void Awake()
     {
@@ -31,7 +35,7 @@ public class MarketingController : EnemyBase
         turrets.Add(turret);
         turret.GetComponent<CharacterBase>().OnDeath += DestroyTurret;
         turret.transform.position = position;
-        shootTimer = 1 / fireRate;
+        shootTimer = 1 / GetFireRate();
     }
 
     private void DestroyTurret(GameObject turret)
@@ -44,28 +48,41 @@ public class MarketingController : EnemyBase
     {
         foreach (var turret in turrets)
         {
-            DestroyTurret(turret);
+            turret.GetComponent<CharacterBase>().Die();
         }
+        turrets.Clear();
         base.Die();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (timeToWaypoint <= 0)
+        {
+            GetNextWaypoint();
+        }
+        WaypointTimer();
+    }
+
+    private void WaypointTimer()
+    {
+        timeToWaypoint -= Time.deltaTime;
     }
 
     protected override void Move()
     {
-        if (Vector3.Distance(position, nextWaypoint) < 0.1f)
-        {
-            GetNextWaypoint();
-        }
-        base.Move();
+        rBody.velocity = lookDir * speed;
     }
 
     private void GetNextWaypoint()
     {
         var angle = Random.Range(angleMin, angleMax);
         lookDir = (Vector3.zero - position).normalized;
-        lookDir = Quaternion.AngleAxis(angle, Vector3.up) * lookDir;
-        var hit = Physics2D.Raycast(position, lookDir, 100);
+        lookDir = Quaternion.AngleAxis(angle, Vector3.forward) * lookDir;
+        var hit = Physics2D.Raycast(position, lookDir, 100,raycastLayer.value);
         var dist = Vector3.Distance(position, hit.point);
         var distToGo = Random.Range(dist / 2, dist);
+        timeToWaypoint =  distToGo / speed;
         nextWaypoint = position + distToGo * lookDir;
     }
 

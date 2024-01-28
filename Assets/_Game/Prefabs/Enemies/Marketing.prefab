@@ -76,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: -780141001, guid: a495f51287ed822458d21a241498c0e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,7 +176,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   currentHealth: 0
-  speed: 10
-  fireRate: 7
+  speed: 5
+  minFireRate: 0.1
+  maxFireRate: 0.15
+  animator: {fileID: 0}
   bulletPrefab: {fileID: 1007046274112276841, guid: fcc0dc76b0d90884190bd9e449bfa921, type: 3}
+  minShootingRange: 5
+  maxShootingRange: 10
   maxTurrets: 2
+  angleDeviation: 60
+  raycastLayer:
+    serializedVersion: 2
+    m_Bits: 128

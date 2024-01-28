@@ -399,7 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
-  speed: 9
+  minSpeed: 3
+  maxSpeed: 4
   range: 100
   targetTag: Player
   Texts:

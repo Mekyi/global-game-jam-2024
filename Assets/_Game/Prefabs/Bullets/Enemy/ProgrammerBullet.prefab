@@ -341,13 +341,9 @@ MonoBehaviour:
   maxSpeed: 5
   range: 20
   targetTag: Player
-  oneliners:
+  Texts:
   - Console.Log("Hello world");
-  - If(1/0 == 0) DIE();
-  - while(true) { oh nooo... }
-  - // Get commented out!
-  - L.A.U.G.H.WhoMakesClassesLikeThis();
-  - return "Fatal Error!";
+  - if(1/0 == 0) DIE();
   tmp: {fileID: 7080437563780502227}
 --- !u!50 &1542909488873234299
 Rigidbody2D:
