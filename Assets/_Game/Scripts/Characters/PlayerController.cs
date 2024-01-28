@@ -51,6 +51,7 @@ public class PlayerController : CharacterBase
     {
         base.Start();
         GameManager.Instance.OnLevelLoad += OnLevelLoad;
+        OnDeath += GameManager.Instance.GameOver;
         grayScaler?.SetColorScale(1);
     }
 
