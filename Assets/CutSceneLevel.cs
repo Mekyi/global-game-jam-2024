@@ -62,6 +62,7 @@ public class CutSceneLevel : MonoBehaviour
 
         if (dialogIndex == TalkPanels.Length)
         {
+            GameManager.Instance.EndCutscene();
             SceneManager.LoadScene("LVL-4");
             return;
         }

@@ -80,6 +80,14 @@ public class GameManager : MonoBehaviour
         virtualCamera.SetActive(false);
         Player.SetActive(false);
     }
+
+    public void EndCutscene()
+    {
+        mainCamera.SetActive(true);
+        virtualCamera.SetActive(true);
+        Player.SetActive(true);
+    }
+
     public GameObject GetEnemyGo(EnemyName enemyName)
     {
         return enemyGoAssociation.FirstOrDefault(enemy => enemy.Name == enemyName).Prefab;
