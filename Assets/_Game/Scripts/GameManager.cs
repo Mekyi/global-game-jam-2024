@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -18,8 +17,6 @@ public class GameManager : MonoBehaviour
     private WaveController waveController;
     private PlayerController playerCtrlr;
     public List<EnemyToGo> enemyGoAssociation;
-    [SerializeField] 
-    private List<SceneAsset> scenes;
     public Vector3 playerPosition => playerCtrlr.position;
     [HideInInspector]
     public bool isKeyboardAndMouse;
@@ -89,10 +86,10 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel()
     {
-        currentScene += 1;
-        if (scenes.Count <= currentScene)
+        int nextLevelBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (String.IsNullOrWhiteSpace(SceneUtility.GetScenePathByBuildIndex(nextLevelBuildIndex)))
             return;
-        SceneManager.LoadScene(scenes[currentScene].name);
+        SceneManager.LoadScene(nextLevelBuildIndex);
         Player.SetActive(true);
         mainCamera.gameObject.SetActive(true);
         virtualCamera.SetActive(true);
