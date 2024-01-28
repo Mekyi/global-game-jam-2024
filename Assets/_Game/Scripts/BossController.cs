@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -108,7 +109,7 @@ public class BossController : CharacterBase
 
         if (distanceToTarget < 1f)
         {
-            rBody.velocity = direction * speed * (distanceToTarget / 1f);
+            rBody.velocity = direction * (speed * (distanceToTarget / 1f));
 
             if (distanceToTarget < 0.1f)
             {
@@ -218,6 +219,10 @@ public class BossController : CharacterBase
         if (healthPercentage <= firstWaveSpawnPercent && !firstWaveActivated)
         {
             firstWaveAdds.SetActive(true);
+            foreach (var charBase in firstWaveAdds.GetComponentsInChildren<CharacterBase>())
+            {
+                charBase.OnDeath += Destroy;
+            }
             firstWaveActivated = true;
         }
 
