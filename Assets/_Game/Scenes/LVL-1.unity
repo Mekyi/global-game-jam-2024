@@ -216,6 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865fddd6deede8d42840b92cc8073e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &833038264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5568244823230636406, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+  m_PrefabInstance: {fileID: 7554068203315242356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1697080697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6039346058872083996, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
@@ -402,10 +407,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 424015839882487413, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 424015839882487413, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 799131871026861601, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1559522715688946379, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 833038264}
     - target: {fileID: 1559522715688946379, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: maxHealth
       value: 20
@@ -458,6 +475,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 8.91892
       objectReference: {fileID: 0}
+    - target: {fileID: 3350688722026372590, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.832965
+      objectReference: {fileID: 0}
     - target: {fileID: 3695876912106448738, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: victoryScreen
       value: 
@@ -466,6 +487,10 @@ PrefabInstance:
       propertyPath: eventSystemPrefab
       value: 
       objectReference: {fileID: 713038549844145889, guid: 627d837754046444b9fc24c7f0284fa1, type: 3}
+    - target: {fileID: 4046917515861473091, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad54cf867fda8e8419029f0dc1df8fcc, type: 2}
     - target: {fileID: 4546574411395286559, guid: 818cf192bc03b17439f453f491ddb335, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.367166

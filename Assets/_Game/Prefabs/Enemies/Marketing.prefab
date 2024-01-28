@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f163b0f703bfa584ba381cbd62e6d8f5, type: 2}
+  - {fileID: 2100000, guid: c757b96c85522404796ac25230bedc0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.05, y: -0.14}
+  m_Size: {x: 0.7, y: 1.08}
   m_Direction: 0
 --- !u!114 &3155608616742117570
 MonoBehaviour:
