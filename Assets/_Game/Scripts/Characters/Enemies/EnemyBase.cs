@@ -12,7 +12,7 @@ public class EnemyBase : CharacterBase
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private GameObject bulletPrefab;
+    internal GameObject bulletPrefab;
     private Vector3 playerPos => GameManager.Instance.playerPosition;
     [SerializeField]
     private float minShootingRange = 5f;
@@ -22,7 +22,7 @@ public class EnemyBase : CharacterBase
     private float randomStraifingDirection;
     
     // Start is called before the first frame update
-    void Awake()
+    protected virtual void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
         randomStraifingDirection = UnityEngine.Random.Range(0, 2);
@@ -30,19 +30,19 @@ public class EnemyBase : CharacterBase
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         position = transform.position;
         AimAtPlayer();
         ShootTimer();
         Shoot();
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
 
-    void Move()
+    protected virtual void Move()
     {
         if (Vector2.Distance(gameObject.transform.position, playerPos) > shootingRange)
         {
@@ -61,10 +61,11 @@ public class EnemyBase : CharacterBase
         }
     }
 
-    void AimAtPlayer()
+    protected virtual void AimAtPlayer()
     {
         lookDir = (playerPos - position).normalized;
     }
+    
     private void ShootTimer()
     {
         if (canShoot)
@@ -72,14 +73,19 @@ public class EnemyBase : CharacterBase
         shootTimer -= Time.deltaTime;
     }
     
-    private void Shoot()
+    protected virtual void Shoot()
     {
         if (!canShoot)
             return;
         var bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<BulletBase>().Shoot(lookDir, position);
-        shootTimer = 1 / UnityEngine.Random.Range(minFireRate, maxFireRate);
+        shootTimer = 1 / GetFireRate();
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.EnemyProgrammerShoot, transform.position);
+    }
+
+    protected float GetFireRate()
+    {
+        return UnityEngine.Random.Range(minFireRate, maxFireRate);
     }
 
     public override bool DealDamage(float amount)

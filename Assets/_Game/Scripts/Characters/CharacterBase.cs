@@ -46,7 +46,7 @@ public class CharacterBase : MonoBehaviour
         OnDeath?.Invoke(gameObject);
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }
