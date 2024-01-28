@@ -42,14 +42,17 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField]
     public EventReference EnemyDeath { get; private set; }
 
-    //[field: SerializeField]
-    //public EventReference EnemyCatMeow { get; private set; }
+    [field: SerializeField]
+    public EventReference EnemyCatMeow { get; private set; }
 
-    //[field: SerializeField]
-    //public EventReference EnemyCatAttack { get; private set; }
+    [field: SerializeField]
+    public EventReference EnemyCatEvilMeow { get; private set; }
 
-    //[field: SerializeField]
-    //public EventReference EnemyCatDeath { get; private set; }
+    [field: SerializeField]
+    public EventReference EnemyCatAttack { get; private set; }
+
+    [field: SerializeField]
+    public EventReference EnemyCatLaugh { get; private set; }
 
     public static FMODEvents Instance { get; private set; }
 
